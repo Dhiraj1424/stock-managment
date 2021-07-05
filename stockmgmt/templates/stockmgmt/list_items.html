@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+{% for query in queryset%}
+{{query.item_name}},
+{{query.quantity}},<br>
+{% endfor %}
+
+</body>
+</html>
