@@ -15,13 +15,28 @@ def home(request):
 
 
 def list_item(request):
-
-    titile = "this is title"
+    header = "this is title"
+    form = StockSearchForm(request.POST or None)
     queryset = Stock.objects.all()
 
     context = {
-        'queryset': queryset
+        'header':header,
+        'queryset': queryset,
+        'form':form
     }
+
+
+    if request.method == 'POST':
+    	queryset = Stock.objects.filter(category__icontains=form['category'].value(),
+				item_name__icontains=form['item_name'].value()
+			)
+
+
+    context = {
+	"form": form,
+	"header": header,
+	"queryset": queryset,
+}
 
     return render(request, 'stockmgmt/list_items.html', context)
 
