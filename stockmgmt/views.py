@@ -52,3 +52,4 @@ def add_item(request):
         'form': form
     }
     return render(request, 'stockmgmt/add_item.html', context)
+

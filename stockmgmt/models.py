@@ -4,9 +4,9 @@ from django.db import models
 
 
 class Stock(models.Model):
-    category = models.CharField(max_length=20, null=True)
-    item_name = models.CharField(max_length=20, null=True)
-    quantity = models.IntegerField(default=0, null=True)
+    category = models.CharField(max_length=20, null=True, blank=True)
+    item_name = models.CharField(max_length=20,blank=True, null=True)
+    quantity = models.IntegerField(default=0, null=True,blank=True)
     recive_quqntity = models.IntegerField(default=0, null=True)
     recive_by = models.CharField(max_length=20, null=True)
     issue_quqntity = models.IntegerField(default=0, null=True)
