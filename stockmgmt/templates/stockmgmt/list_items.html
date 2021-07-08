@@ -74,14 +74,18 @@
             <th>CATEGORY</th>
             <th>ITEM NAME</th>
             <th>QUANTITY IN STORE</th>
+            <th>Delete</th>
           </tr>
         </thead>
       {% for instance in queryset %}
           <tr>
             <td>{{forloop.counter}}</td>
             <td>{{instance.category}}</td>
-            <td>{{instance.item_name}}</td>
+            <td><a href="{% url 'update_item' instance.id %}">{{instance.item_name}}</a></td>
             <td>{{instance.quantity}}</td>
+            
+            <td><td><a href="{% url 'delete_item' instance.id %}">Delete</a></td> </td>
+            {% comment %} <img src ="{%static 'stockmgmt/img/deleteicon.png' %}"> {% endcomment %}
           </tr>
       {% endfor %}
     </table>

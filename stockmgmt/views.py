@@ -53,3 +53,31 @@ def add_item(request):
     }
     return render(request, 'stockmgmt/add_item.html', context)
 
+def update_item(request,pk):
+    stock=Stock.objects.get(id=pk)
+    form=UpdateForm(instance=stock)
+    if request.method=='POST':
+        form=UpdateForm(request.POST,instance=stock)
+        if form.is_valid():
+            form.save()
+            return redirect('/list_item')
+    context={
+        'form':form
+    }
+    return render(request, 'stockmgmt/add_item.html', context)
+
+def delete_item(request,pk):
+    stock=Stock.objects.get(id=pk)
+    if request.method=='POST':
+        stock.delete()
+        return redirect('/list_item')
+
+    context={
+        'stock':stock
+    }
+
+    return render(request, 'stockmgmt/delete_item.html', context)
+
+    
+
+    
