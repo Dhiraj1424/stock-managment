@@ -1,12 +1,25 @@
 from django.db import models
 
 # Create your models here.
+category_choice = (
+    ('Furniture', 'Furniture'),
+    ('IT Equipment', 'IT Equipment'),
+    ('Phone', 'Phone'),
+)
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Stock(models.Model):
-    category = models.CharField(max_length=20, null=True, blank=True)
-    item_name = models.CharField(max_length=20,blank=True, null=True)
-    quantity = models.IntegerField(default=0, null=True,blank=True)
+    category = models.ForeignKey(
+        Category, null=True, on_delete=models.SET_NULL)
+    item_name = models.CharField(max_length=20, blank=True, null=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
     recive_quqntity = models.IntegerField(default=0, null=True)
     recive_by = models.CharField(max_length=20, null=True)
     issue_quqntity = models.IntegerField(default=0, null=True)

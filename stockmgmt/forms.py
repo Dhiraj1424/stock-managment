@@ -26,7 +26,7 @@ class StockCreateForm(forms.ModelForm):
             raise forms.ValidationError('this is This field is required')
         return item_name
 
-
+# searching
 class StockSearchForm(forms.ModelForm):
     class Meta:
         model = Stock
